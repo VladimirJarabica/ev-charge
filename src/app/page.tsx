@@ -1,33 +1,20 @@
 "use client";
-import { useMemo, useState } from "react";
-import { Slider } from "../components/ui/slider";
 import { div, mul, round, sub } from "exact-math";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useMemo } from "react";
+import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
+import { Slider } from "../components/ui/slider";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../components/ui/table";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { Button } from "../components/ui/button";
 
-export default function Home() {
-  // const [state, setState] = useState<{
-  //   evConsumption: number;
-  //   kwPrice: number;
-  //   fuelConsumption: number;
-  //   fuelPrice: number;
-  // }>({
-  //   evConsumption: 20,
-  //   kwPrice: 0.39,
-  //   fuelConsumption: 7,
-  //   fuelPrice: 1.5,
-  // });
+function Home() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -194,31 +181,15 @@ export default function Home() {
             </TableCell>
           </TableRow>
         </TableBody>
-        {/* <TableHeader className="font-semibold">
-          <TableRow>
-            <TableHead>Difference</TableHead>
-            <TableHead>in %</TableHead>
-            <TableHead>in €</TableHead>
-           
-          </TableRow>
-        </TableHeader> */}
-        {/* <TableBody>
-          <TableCell></TableCell>
-          <TableCell>
-            {round(
-              div(
-                mul(sub(evCostPer100km, fossilCostPer100km), 100),
-                fossilCostPer100km
-              ),
-              -2
-            )}
-            %
-          </TableCell>
-          <TableCell>
-            {round(sub(evCostPer100km, fossilCostPer100km), -2)}€
-          </TableCell>
-        </TableBody> */}
       </Table>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <Home />
+    </Suspense>
   );
 }
